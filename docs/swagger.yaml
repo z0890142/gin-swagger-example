@@ -1,0 +1,103 @@
+basePath: /api/v1
+definitions:
+  main.account:
+    properties:
+      account:
+        type: string
+      password:
+        type: string
+    type: object
+host: 127.0.0.1:8080
+info:
+  contact:
+    name: Skyler
+  description: swagger test example
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: swagger test
+  version: "1.0"
+paths:
+  /Device:
+    delete:
+      parameters:
+      - description: token
+        in: header
+        name: auth
+        required: true
+        type: string
+      - description: index
+        in: path
+        name: index
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"msg":"OK"}'
+          schema:
+            type: string
+        "400":
+          description: '{"msg":"fail"}'
+          schema:
+            type: string
+      summary: Delete Account by index
+      tags:
+      - Device
+    get:
+      parameters:
+      - description: token
+        in: header
+        name: auth
+        required: true
+        type: string
+      - description: index
+        in: query
+        name: index
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"msg":"OK"}'
+          schema:
+            $ref: '#/definitions/main.account'
+        "400":
+          description: '{"msg":"fail"}'
+          schema:
+            type: string
+      summary: Get Account by index
+      tags:
+      - Device
+    post:
+      parameters:
+      - description: token
+        in: header
+        name: auth
+        required: true
+        type: string
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/main.account'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"msg":"OK"}'
+          schema:
+            $ref: '#/definitions/main.account'
+        "400":
+          description: '{"msg":"fail"}'
+          schema:
+            type: string
+      summary: Add Account in Slice
+      tags:
+      - Device
+schemes:
+- http,https
+swagger: "2.0"
